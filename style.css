@@ -1,0 +1,36 @@
+:root{
+    --background: darkgray;
+    --outline: "white";
+}
+
+body{
+    display:flex;
+    background-color: var(--background);
+    height: 95vh;
+    overflow: hidden;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    gap: 20px;
+}
+
+#test{
+    height: 50px;
+    width: 100px;
+    background-color: red;
+}
+
+canvas {
+    image-rendering: pixelated;
+}
+
+#canvas {
+    background: #000;
+    border: 3px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
