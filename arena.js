@@ -83,17 +83,6 @@ function create_map_grid(){
     }
 }
 
-function get_free_spots(){
-    let result = [];
-    if(map_grid.length === 0) return result;
-    for(let i = 0; i < map_grid.length; i++){
-        for(let j = 0; j < map_grid[i].length; j++){
-            if(map_grid[i][j].length === 0) result.push({x:i,y:j});
-        }
-    }
-    return result;
-}
-
 class Entity{
     constructor(x, y, type, skins){
         if(x < 0 || x >= GRID_BOXES.horizontal) throw new Error('INVALID X AT ENTITY CONSTRUCTOR');
@@ -306,6 +295,7 @@ class Tree extends Entity{
         if(before_percent != this.get_closest_percent()){
             this.logical_render();
         }
+        return _entity;
     }
 }
 

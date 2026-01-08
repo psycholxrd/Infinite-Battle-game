@@ -1,5 +1,5 @@
 //60hz Monitors only for now
-const FRAMES_TO_SKIP = 10;
+const FRAMES_TO_SKIP = 60;
 
 class TimeController{
     constructor(){
@@ -37,6 +37,3 @@ class GameClock{
         }
     }
 }
-
-const tc = new TimeController();
-const gc = new GameClock(tc, () => {console.log("tick")});
