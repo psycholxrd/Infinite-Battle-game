@@ -1,5 +1,5 @@
 class gameInstance {
-    constructor(map, grid) {
+    constructor(map, grid, decision_maker1, decision_maker2){
         this.entities = {
             humans1: [],
             humans2: [],
@@ -10,6 +10,8 @@ class gameInstance {
         };
         this.map = map;
         this.grid = grid;
+        this.decision_maker1 = new decision_maker1('Team1', this.entities);
+        this.decision_maker2 = new decision_maker2('Team2', this.entities);
         this.map_generated = false;
     }
     get_free_spots(){
@@ -69,13 +71,23 @@ class gameInstance {
         console.log(this.entities);
     }
     onTick(){
-        this.entities.trees.forEach(tree => {if(tree.amount > 0)tree.drop_an_apple()});
-        //Human decision making logic...
+        this.entities.trees.forEach(tree => {
+            if(tree.amount > 0){
+                let apple = tree.drop_an_apple();
+                this.entities.apples.push(apple);
+            }
+        });
+        //update humans
+        this.decision_maker1.updateEntities(this.entities);
+        this.decision_maker2.updateEntities(this.entities);
+        //make decisions
+        this.decision_maker1.makeDecisions();
+        this.decision_maker2.makeDecisions();
     }
 }
 
 // Example usage:
-const game = new gameInstance(map_grid, grid);
+const game = new gameInstance(map_grid, grid, DM.RANDOM, DM.RANDOM);
 game.generateMap(10, 5, 5, 10);
 const tc = new TimeController();
 const gc = new GameClock(tc, game.onTick.bind(game));
