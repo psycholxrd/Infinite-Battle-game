@@ -87,7 +87,7 @@ class gameInstance {
 }
 
 // Example usage:
-const game = new gameInstance(map_grid, grid, DM.RANDOM, DM.RANDOM);
+const game = new gameInstance(map_grid, grid, RandomDecisionMaker, RandomDecisionMaker);
 game.generateMap(10, 5, 5, 10);
 const tc = new TimeController();
 const gc = new GameClock(tc, game.onTick.bind(game));

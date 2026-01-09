@@ -24,7 +24,7 @@ class RandomDecisionMaker extends DecisionMaker {
         human.execute(decision_name, decision_spot);
     }
     makeDecisions(){
-        let arr = this.humansTeam === 'Team1' ? this.entities.humans1 : this.entities.humans2
+        let arr = this.team === 'Team2' ? this.entities.humans2 : this.entities.humans1;
         for(let human of arr){
             this.decide(human);
         }
@@ -41,16 +41,19 @@ class CPUDecisionMaker extends DecisionMaker {
         // to be implemented...
     }
     makeDecisions(){
-        let arr = this.humansTeam === 'Team1' ? this.entities.humans1 : this.entities.humans2
+        let arr;
+        switch (this.team){
+            case 'Team1':
+                arr = this.entities.humans1;
+                break;
+            case 'Team2':
+                arr = this.entities.humans2;
+                break;
+        }
         for(let human of arr){
             this.decide(human);
         }
     }
-}
-
-const DM = {
-    RANDOM: RandomDecisionMaker,
-    CPU: CPUDecisionMaker,
 }
 
 /*
